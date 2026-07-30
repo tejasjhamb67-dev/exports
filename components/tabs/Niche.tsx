@@ -24,9 +24,9 @@ function Radar({ s, size = 128 }: { s: Industry["score"]; size?: number }) {
     <svg width={size} height={size}>
       {[0.33, 0.66, 1].map((g, i) => (
         <polygon key={i} points={AXES.map((_, j) => { const [x, y] = pt(j, 100 * g); return `${x},${y}`; }).join(" ")}
-          fill="none" stroke="rgba(255,255,255,0.07)" />
+          fill="none" stroke="rgba(30,41,59,0.07)" />
       ))}
-      {AXES.map((a, i) => { const [x, y] = pt(i, 100); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(255,255,255,0.06)" />; })}
+      {AXES.map((a, i) => { const [x, y] = pt(i, 100); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(30,41,59,0.06)" />; })}
       <polygon points={poly} fill="rgba(234,178,74,0.22)" stroke="var(--gold)" strokeWidth={1.6} />
       {AXES.map((a, i) => { const [x, y] = pt(i, 118); return <text key={i} x={x} y={y + 3} textAnchor="middle" fontSize="8" fill="var(--ink-3)">{a.label}</text>; })}
     </svg>

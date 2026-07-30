@@ -17,9 +17,9 @@ export default function WorldMap({ onSelect, selected }: { onSelect: (c: string 
   function fill(name: string) {
     if (name === "India") return "#eab24a";
     const d = demandMap[name];
-    if (!d) return "#141b26";
+    if (!d) return "#e7ecf2";
     const t = Math.pow(d.intensity / 100, 0.75);
-    return lerpColor("#183036", "#38c7cc", t);
+    return lerpColor("#e0eeee", "#38c7cc", t);
   }
   const hd = hover ? demandMap[hover.name] : null;
 
@@ -32,7 +32,7 @@ export default function WorldMap({ onSelect, selected }: { onSelect: (c: string 
           return (
             <path key={name} d={c.path} className="map-country"
               fill={fill(name)} opacity={isSel ? 1 : has ? 0.96 : 0.5}
-              stroke={isSel ? "var(--teal-2)" : "rgba(8,11,17,0.7)"} strokeWidth={isSel ? 1.2 : 0.4}
+              stroke={isSel ? "var(--teal-2)" : "rgba(246,248,251,0.7)"} strokeWidth={isSel ? 1.2 : 0.4}
               style={{ cursor: has ? "pointer" : "default" }}
               onMouseMove={(e) => demandMap[name] && setHover({ name, x: e.clientX, y: e.clientY })}
               onClick={() => demandMap[name] && onSelect(isSel ? null : name)} />
@@ -41,7 +41,7 @@ export default function WorldMap({ onSelect, selected }: { onSelect: (c: string 
         {/* India origin marker */}
         {countries["India"] && (
           <g style={{ pointerEvents: "none" }}>
-            <circle cx={countries["India"].cx} cy={countries["India"].cy} r={4} fill="#eab24a" stroke="#1a130a" strokeWidth={1} />
+            <circle cx={countries["India"].cx} cy={countries["India"].cy} r={4} fill="#eab24a" stroke="#ffffff" strokeWidth={1} />
           </g>
         )}
         {/* flow lines India -> top demand markets */}

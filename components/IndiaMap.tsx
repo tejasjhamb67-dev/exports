@@ -50,9 +50,9 @@ export default function IndiaMap({ onSelect, selected }: { onSelect: (s: string 
 
   function fill(key: string) {
     const raw = values[key];
-    if (raw == null) return "#141b26";
+    if (raw == null) return "#e7ecf2";
     const t = Math.pow(raw / maxVal, 0.42);
-    return lerpColor("#20293a", "#eab24a", t);
+    return lerpColor("#e9edf3", "#eab24a", t);
   }
 
   // zoom transform for selected state
@@ -106,7 +106,7 @@ export default function IndiaMap({ onSelect, selected }: { onSelect: (s: string 
             const dim = selected && !isSel;
             return (
               <path key={key} d={st.path} className={`map-state ${isSel ? "active" : ""}`}
-                fill={fill(key)} stroke="rgba(8,11,17,0.9)" strokeWidth={0.6 / zoomScale}
+                fill={fill(key)} stroke="rgba(246,248,251,0.9)" strokeWidth={0.6 / zoomScale}
                 opacity={dim ? 0.28 : 1}
                 onMouseMove={(e) => move(e, key)}
                 onClick={() => {
@@ -120,7 +120,7 @@ export default function IndiaMap({ onSelect, selected }: { onSelect: (s: string 
             const v = values[key];
             if (v == null || v < maxVal * 0.03) return null;
             return (
-              <text key={key} x={st.cx} y={st.cy} textAnchor="middle" fontSize={9} fill="rgba(255,255,255,0.55)"
+              <text key={key} x={st.cx} y={st.cy} textAnchor="middle" fontSize={9} fill="rgba(30,41,59,0.55)"
                 style={{ pointerEvents: "none", fontWeight: 600 }}>{key.length > 12 ? key.slice(0, 10) + "…" : key}</text>
             );
           })}
@@ -129,8 +129,8 @@ export default function IndiaMap({ onSelect, selected }: { onSelect: (s: string 
             const [x, y] = CITY_XY[city];
             return (
               <g key={city} style={{ pointerEvents: "none" }}>
-                <circle cx={x} cy={y} r={3.2 / zoomScale} fill="var(--gold-2)" stroke="#1a130a" strokeWidth={1 / zoomScale} />
-                <text x={x + 5 / zoomScale} y={y + 3 / zoomScale} fontSize={9 / zoomScale} fill="#fff" fontWeight={600}>{city}</text>
+                <circle cx={x} cy={y} r={3.2 / zoomScale} fill="var(--gold-2)" stroke="#ffffff" strokeWidth={1 / zoomScale} />
+                <text x={x + 5 / zoomScale} y={y + 3 / zoomScale} fontSize={9 / zoomScale} fill="#17202e" fontWeight={600}>{city}</text>
               </g>
             );
           })}

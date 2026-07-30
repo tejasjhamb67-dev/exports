@@ -29,7 +29,7 @@ export default function Cover({ go }: { go: (tab: string) => void }) {
             </div>
           </div>
 
-          <div className="card pad-lg" style={{ background: "linear-gradient(160deg,#131a26,#0b0f17)" }}>
+          <div className="card pad-lg" style={{ background: "linear-gradient(160deg,#ffffff,#f4f6f9)" }}>
             <div className="card-h"><h3>FY25 merchandise mix</h3><span className="sub">US$B · DGCI&amp;S</span></div>
             <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
               <Donut size={148} thick={20}

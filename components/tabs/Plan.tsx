@@ -46,7 +46,7 @@ export default function Plan({ go }: { go: (t: string) => void }) {
         {/* recommendation */}
         <div className="spacer" />
         <div className="grid" style={{ gridTemplateColumns: "1.2fr 1fr" }}>
-          <div className="card pad-lg" style={{ background: "linear-gradient(160deg,#1a1408,#0b0f17)", border: "1px solid var(--gold-line)" }}>
+          <div className="card pad-lg" style={{ background: "linear-gradient(160deg,#fbf4e5,#f4f6f9)", border: "1px solid var(--gold-line)" }}>
             <div className="eyebrow">Recommended flagship</div>
             <h2 style={{ fontSize: 26, margin: "8px 0" }}>{flagship.emoji} {flagship.whitespace.split(" (")[0]}</h2>
             <div className="flow" style={{ marginBottom: 12 }}>

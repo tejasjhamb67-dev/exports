@@ -55,7 +55,7 @@ export default function Mapping() {
             <div className="legend" style={{ marginTop: 12 }}>
               <span>Colour = supply intensity (darker → higher)</span>
               <div style={{ flex: 1 }} />
-              <div style={{ width: 130, height: 8, borderRadius: 4, background: "linear-gradient(90deg,#20293a,#eab24a)" }} />
+              <div style={{ width: 130, height: 8, borderRadius: 4, background: "linear-gradient(90deg,#e9edf3,#eab24a)" }} />
               <span>low → high</span>
             </div>
           </div>

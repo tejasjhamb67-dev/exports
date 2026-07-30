@@ -63,7 +63,7 @@ export function Donut({ segments, size = 168, thick = 22, center }: {
   return (
     <div style={{ position: "relative", width: size, height: size }}>
       <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth={thick} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(30,41,59,0.05)" strokeWidth={thick} />
         {segments.map((s, i) => {
           const len = (s.value / total) * c;
           const el = (
@@ -90,7 +90,7 @@ export function RangeBar({ lo, base, hi, min, max, unit = "", color = "var(--gol
   const p = (v: number) => ((v - min) / span) * 100;
   return (
     <div style={{ padding: "6px 0" }}>
-      <div style={{ position: "relative", height: 8, background: "rgba(255,255,255,0.06)", borderRadius: 4 }}>
+      <div style={{ position: "relative", height: 8, background: "rgba(30,41,59,0.06)", borderRadius: 4 }}>
         <div style={{ position: "absolute", left: `${p(lo)}%`, width: `${p(hi) - p(lo)}%`, top: 0, bottom: 0, background: color, opacity: 0.28, borderRadius: 4 }} />
         <div style={{ position: "absolute", left: `calc(${p(base)}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: 6, background: color, border: "2px solid var(--bg)", boxShadow: "0 0 0 3px rgba(0,0,0,0.3)" }} />
       </div>
@@ -121,12 +121,12 @@ export function LineChart({ series, w = 560, h = 220, fmtY, labels, colors }: {
         const v = min + (max - min) * (1 - f);
         return (
           <g key={i}>
-            <line x1={pad.l} x2={w - pad.r} y1={pad.t + f * ih} y2={pad.t + f * ih} stroke="rgba(255,255,255,0.05)" />
+            <line x1={pad.l} x2={w - pad.r} y1={pad.t + f * ih} y2={pad.t + f * ih} stroke="rgba(30,41,59,0.05)" />
             <text x={pad.l - 8} y={pad.t + f * ih + 3} textAnchor="end" fontSize="9.5" fill="var(--ink-4)" className="tnum">{fmtY(v)}</text>
           </g>
         );
       })}
-      <line x1={pad.l} x2={w - pad.r} y1={zeroY} y2={zeroY} stroke="rgba(255,255,255,0.18)" strokeDasharray="3 3" />
+      <line x1={pad.l} x2={w - pad.r} y1={zeroY} y2={zeroY} stroke="rgba(30,41,59,0.18)" strokeDasharray="3 3" />
       {series.map((s, si) => {
         const d = s.map((v, i) => `${i === 0 ? "M" : "L"}${x(i)},${y(v)}`).join(" ");
         return (
@@ -160,7 +160,7 @@ export function Columns({ data, w = 560, h = 240, fmtY, color = "var(--gold)" }:
         const v = min + (max - min) * (1 - f);
         return (
           <g key={i}>
-            <line x1={pad.l} x2={w - pad.r} y1={pad.t + f * ih} y2={pad.t + f * ih} stroke="rgba(255,255,255,0.05)" />
+            <line x1={pad.l} x2={w - pad.r} y1={pad.t + f * ih} y2={pad.t + f * ih} stroke="rgba(30,41,59,0.05)" />
             <text x={pad.l - 8} y={pad.t + f * ih + 3} textAnchor="end" fontSize="9.5" fill="var(--ink-4)" className="tnum">{fmtY(v)}</text>
           </g>
         );

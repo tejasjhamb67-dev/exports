@@ -36,7 +36,7 @@ export default function Countries() {
               <span className="li"><span className="dot" style={{ background: "#eab24a" }} /> India (origin)</span>
               <span className="li"><span className="dot" style={{ background: "#38c7cc" }} /> demand market</span>
               <div style={{ flex: 1 }} />
-              <div style={{ width: 120, height: 8, borderRadius: 4, background: "linear-gradient(90deg,#183036,#38c7cc)" }} />
+              <div style={{ width: 120, height: 8, borderRadius: 4, background: "linear-gradient(90deg,#e0eeee,#38c7cc)" }} />
               <span>low → high pull</span>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function Countries() {
                       <span className="badge-rank">{String(i + 1).padStart(2, "0")}</span>
                       <span style={{ fontWeight: 600, flex: 1, fontSize: 13 }}>{c.short}</span>
                       <span className="pill-sm">{c.region}</span>
-                      <div style={{ width: 70, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.06)" }}>
+                      <div style={{ width: 70, height: 6, borderRadius: 3, background: "rgba(30,41,59,0.06)" }}>
                         <div style={{ width: `${c.intensity}%`, height: "100%", borderRadius: 3, background: "var(--teal)" }} />
                       </div>
                       <span className="tnum teal-t" style={{ fontWeight: 700, width: 26, textAlign: "right" }}>{c.intensity}</span>
