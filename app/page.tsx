@@ -9,29 +9,22 @@ import Countries from "@/components/tabs/Countries";
 import Financial from "@/components/tabs/Financial";
 import GTMTab from "@/components/tabs/GTM";
 import Phases from "@/components/tabs/Phases";
-
-const TABS = [
-  { id: "cover", label: "Cover", i: "00" },
-  { id: "mapping", label: "Supply Map", i: "01" },
-  { id: "countries", label: "Demand Map", i: "02" },
-  { id: "niche", label: "Niche", i: "03" },
-  { id: "product", label: "Product", i: "04" },
-  { id: "plan", label: "The Plan", i: "05" },
-  { id: "financial", label: "Financial Model", i: "06" },
-  { id: "gtm", label: "GTM", i: "07" },
-  { id: "phases", label: "Phases", i: "08" },
-];
+import FlowNav from "@/components/FlowNav";
+import { FLOW } from "@/lib/flow";
 
 export default function Home() {
   const [tab, setTab] = useState("cover");
   const go = (t: string) => { setTab(t); if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" }); };
 
   useEffect(() => {
-    const h = () => { const id = window.location.hash.replace("#", ""); if (TABS.find((t) => t.id === id)) setTab(id); };
+    const h = () => { const id = window.location.hash.replace("#", ""); if (FLOW.find((t) => t.id === id)) setTab(id); };
     h(); window.addEventListener("hashchange", h);
     return () => window.removeEventListener("hashchange", h);
   }, []);
   useEffect(() => { if (typeof window !== "undefined") { try { window.history.replaceState(null, "", `#${tab}`); } catch { /* sandboxed iframe */ } } }, [tab]);
+
+  const curIdx = FLOW.findIndex((t) => t.id === tab);
+  const cur = FLOW[curIdx] || FLOW[0];
 
   return (
     <div className="app">
@@ -42,14 +35,33 @@ export default function Home() {
             <div className="brand-txt">Bharat Export Atlas<small>Supply × Demand × White-space</small></div>
           </div>
           <nav className="tabs">
-            {TABS.map((t) => (
-              <div key={t.id} className={`tab ${tab === t.id ? "active" : ""}`} onClick={() => go(t.id)}>
-                <span className="tab-i">{t.i}</span>{t.label}
-              </div>
-            ))}
+            {FLOW.map((t, i) => {
+              const newAct = i > 0 && t.act !== FLOW[i - 1].act;
+              return (
+                <React.Fragment key={t.id}>
+                  {newAct ? <span className="nav-sep" /> : null}
+                  <div className={`tab ${tab === t.id ? "active" : ""}`} onClick={() => go(t.id)}>
+                    <span className="tab-i">{t.i}</span>{t.label}
+                  </div>
+                </React.Fragment>
+              );
+            })}
           </nav>
         </div>
       </header>
+
+      {/* persistent flow context strip */}
+      <div className="flowstrip">
+        <div className="wrap flowstrip-inner">
+          <span className="act-tag">{cur.actN ? <span className="n">Act {cur.actN}</span> : null}{cur.act}</span>
+          <div className="steps">
+            {FLOW.map((t, i) => (
+              <span key={t.id} className={`step-dot ${i === curIdx ? "cur" : i < curIdx ? "done" : ""}`} onClick={() => go(t.id)} title={t.label} />
+            ))}
+          </div>
+          <span className="step-count">{String(curIdx).padStart(2, "0")} / 08</span>
+        </div>
+      </div>
 
       {tab === "cover" && <Cover go={go} />}
       {tab === "mapping" && <Mapping />}
@@ -60,6 +72,8 @@ export default function Home() {
       {tab === "financial" && <Financial />}
       {tab === "gtm" && <GTMTab />}
       {tab === "phases" && <Phases />}
+
+      <FlowNav current={tab} go={go} />
 
       <footer className="footer">
         <div className="wrap" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>

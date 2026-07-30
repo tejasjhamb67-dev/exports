@@ -43,9 +43,9 @@ export default function Mapping() {
 
         <div className="grid g4" style={{ marginTop: 20 }}>
           <KPI label="States with export-scale firms" val={String(Object.keys(STATE_DETAIL).length)} sub="of BS1000 listed universe" />
-          <KPI label="Companies mapped" val={nation.n.toLocaleString("en-IN")} sub="96% of BS1000 geo-located" tone="teal" />
-          <KPI label="Combined revenue" val={crShort(nation.rev).replace("₹", "")} unit="₹" sub="FY25, listed universe" tone="green" />
-          <KPI label="Combined market cap" val={crShort(nation.mcap).replace("₹", "")} unit="₹" sub="listed universe" tone="violet" />
+          <KPI label="Companies mapped" val={nation.n.toLocaleString("en-IN")} sub="96% of BS1000 geo-located" />
+          <KPI label="Combined revenue" val={crShort(nation.rev).replace("₹", "")} unit="₹" sub="FY25, listed universe" />
+          <KPI label="Combined market cap" val={crShort(nation.mcap).replace("₹", "")} unit="₹" sub="listed universe" />
         </div>
 
         <div className="spacer" />
@@ -91,8 +91,8 @@ export default function Mapping() {
                 </div>
                 <div className="grid g3" style={{ marginBottom: 4 }}>
                   <KPI label="Revenue" val={crShort(d.rev).replace("₹", "")} unit="₹" />
-                  <KPI label="Market cap" val={crShort(d.mcap).replace("₹", "")} unit="₹" tone="teal" />
-                  <KPI label="Companies" val={String(d.n)} tone="green" />
+                  <KPI label="Market cap" val={crShort(d.mcap).replace("₹", "")} unit="₹" />
+                  <KPI label="Companies" val={String(d.n)} />
                 </div>
 
                 <div style={{ marginTop: 16, fontSize: 12, color: "var(--ink-3)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600 }}>Top sectors here</div>

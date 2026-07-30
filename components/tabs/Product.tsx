@@ -66,8 +66,8 @@ export default function Product({ go }: { go: (t: string) => void }) {
             <p style={{ fontSize: 14.5, color: "var(--ink)", lineHeight: 1.6 }}>{ind.whyGap}</p>
             <div className="grid g3" style={{ marginTop: 16 }}>
               <KPI label="Global TAM" val={ind.tam.split(" ")[0].replace("US$", "")} unit="" sub={ind.tam.replace(/^US\$[^ ]+ /, "")} />
-              <KPI label="TAM growth" val={ind.tamCagr.split("–")[0]} unit="%+" sub="CAGR" tone="green" />
-              <KPI label="India's share now" val={ind.indiaShareNow.replace(/[^0-9<~%]/g, "").slice(0, 4) || "low"} sub="of the white-space segment" tone="violet" />
+              <KPI label="TAM growth" val={ind.tamCagr.split("–")[0]} unit="%+" sub="CAGR" />
+              <KPI label="India's share now" val={ind.indiaShareNow.replace(/[^0-9<~%]/g, "").slice(0, 4) || "low"} sub="of the white-space segment" />
             </div>
           </div>
           <div className="card pad-lg">
