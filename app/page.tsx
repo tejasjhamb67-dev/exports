@@ -31,7 +31,7 @@ export default function Home() {
     h(); window.addEventListener("hashchange", h);
     return () => window.removeEventListener("hashchange", h);
   }, []);
-  useEffect(() => { if (typeof window !== "undefined") window.history.replaceState(null, "", `#${tab}`); }, [tab]);
+  useEffect(() => { if (typeof window !== "undefined") { try { window.history.replaceState(null, "", `#${tab}`); } catch { /* sandboxed iframe */ } } }, [tab]);
 
   return (
     <div className="app">

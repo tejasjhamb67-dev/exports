@@ -5,3 +5,7 @@ out
 *.log
 .DS_Store
 data_work
+
+# single-file artifact build outputs
+web/bundle.js
+web/atlas.html
