@@ -4,6 +4,7 @@ import Cover from "@/components/tabs/Cover";
 import Mapping from "@/components/tabs/Mapping";
 import Niche from "@/components/tabs/Niche";
 import Product from "@/components/tabs/Product";
+import Explore from "@/components/tabs/Explore";
 import Plan from "@/components/tabs/Plan";
 import Countries from "@/components/tabs/Countries";
 import Financial from "@/components/tabs/Financial";
@@ -59,7 +60,7 @@ export default function Home() {
               <span key={t.id} className={`step-dot ${i === curIdx ? "cur" : i < curIdx ? "done" : ""}`} onClick={() => go(t.id)} title={t.label} />
             ))}
           </div>
-          <span className="step-count">{String(curIdx).padStart(2, "0")} / 08</span>
+          <span className="step-count">{String(curIdx).padStart(2, "0")} / {String(FLOW.length - 1).padStart(2, "0")}</span>
         </div>
       </div>
 
@@ -68,6 +69,7 @@ export default function Home() {
       {tab === "countries" && <Countries />}
       {tab === "niche" && <Niche go={go} />}
       {tab === "product" && <Product go={go} />}
+      {tab === "explore" && <Explore go={go} />}
       {tab === "plan" && <Plan go={go} />}
       {tab === "financial" && <Financial />}
       {tab === "gtm" && <GTMTab />}

@@ -9,3 +9,6 @@ data_work
 # single-file artifact build outputs
 web/bundle.js
 web/atlas.html
+
+# typescript incremental build info
+*.tsbuildinfo

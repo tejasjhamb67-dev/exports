@@ -7,10 +7,11 @@ export const FLOW: FlowStep[] = [
   { id: "countries", label: "Demand Map",      i: "02", act: "Diagnose",         actShort: "Diagnose", actN: "I" },
   { id: "niche",     label: "Niche",           i: "03", act: "Decide",           actShort: "Decide",   actN: "II" },
   { id: "product",   label: "Product",         i: "04", act: "Decide",           actShort: "Decide",   actN: "II" },
-  { id: "plan",      label: "The Plan",        i: "05", act: "Decide",           actShort: "Decide",   actN: "II" },
-  { id: "financial", label: "Financial Model", i: "06", act: "Price",            actShort: "Price",    actN: "III" },
-  { id: "gtm",       label: "GTM",             i: "07", act: "Execute",          actShort: "Execute",  actN: "IV" },
-  { id: "phases",    label: "Phases",          i: "08", act: "Execute",          actShort: "Execute",  actN: "IV" },
+  { id: "explore",   label: "Explore",         i: "05", act: "Decide",           actShort: "Decide",   actN: "II" },
+  { id: "plan",      label: "The Plan",        i: "06", act: "Decide",           actShort: "Decide",   actN: "II" },
+  { id: "financial", label: "Financial Model", i: "07", act: "Price",            actShort: "Price",    actN: "III" },
+  { id: "gtm",       label: "GTM",             i: "08", act: "Execute",          actShort: "Execute",  actN: "IV" },
+  { id: "phases",    label: "Phases",          i: "09", act: "Execute",          actShort: "Execute",  actN: "IV" },
 ];
 
 // the four acts for the cover journey map
