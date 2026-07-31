@@ -7,10 +7,17 @@
 import raw from "./hs.json";
 
 export type Prov = "official" | "estimate" | "derived";
-export type Provenance = { taxonomy: Prov; figures: Prov; splits: Prov };
+export type Provenance = { taxonomy: Prov; figures: Prov; splits: Prov; policy: Prov };
 export type SupplyState = { state: string; sharePct: number };
 export type Destination = { country: string; usdM: number };
 export type Tier = "A" | "B" | "C";
+export type Tariff = { market: string; mfn: string };
+export type Policy = { rodtepPct: number; ftas: string[]; adFlags: string[]; tariffs: Tariff[] };
+export type Econ = {
+  unit: string; priceUsd: number; grossPct: number;
+  capexCr: number; capacityPerYr: number; fixedCr: number;
+  certs: string[]; entry: string;
+};
 
 export type HSNode = {
   code: string;
@@ -28,6 +35,8 @@ export type HSNode = {
   cagrPct: number;
   tier: Tier;
   score: number;
+  econ: Econ;
+  policy: Policy;
   provenance: Provenance;
 };
 
@@ -93,4 +102,28 @@ export function usdM(v: number): string {
 export function usdB(v: number): string {
   if (v >= 1000) return `US$${(v / 1000).toFixed(1)}T`;
   return `US$${v.toFixed(v < 10 ? 1 : 0)}B`;
+}
+
+// ---- how-to-start: adapt an HS node's econ archetype into the runModel engine
+// (same shape productVenture/productDrivers feed in lib/catalog.ts).
+export function hsVenture(n: HSNode) {
+  const c = n.econ.capexCr;
+  const capex = [
+    { item: "Plant & core line", cr: +(c * 0.5).toFixed(1), note: `Process line for ${n.desc.slice(0, 40)}` },
+    { item: "Fit-out, lab & certification", cr: +(c * 0.18).toFixed(1), note: "QC, approvals, compliance" },
+    { item: "Working-capital float", cr: +(c * 0.32).toFixed(1), note: "Inventory + export receivables" },
+  ];
+  return {
+    id: n.code, name: n.desc, capex, fixedOpexCr: n.econ.fixedCr,
+    ramp: [0.3, 0.52, 0.7, 0.82, 0.88], capacityUnitsPerYr: n.econ.capacityPerYr, unitName: n.econ.unit,
+  };
+}
+export function hsDrivers(n: HSNode) {
+  const p = n.econ.priceUsd;
+  const cost = p * (1 - n.econ.grossPct / 100);
+  return {
+    price: [+(p * 0.8).toFixed(2), p, +(p * 1.3).toFixed(2)],
+    cost: [+(cost * 0.85).toFixed(2), +cost.toFixed(2), +(cost * 1.15).toFixed(2)],
+    util: [45, 70, 90],
+  };
 }

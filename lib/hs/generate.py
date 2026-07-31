@@ -491,6 +491,72 @@ HS4 = {
        ("9406","Prefabricated buildings",8)],
 }
 
+# ---- how-to-start econ archetypes (per HS-4 family; estimate) -----------------
+# unit economics for a new-entrant private-label converter; feeds the same
+# runModel engine as the Product tab. Directional bands, never a quote.
+ECON = {
+ "petro_ref":    dict(unit="tonne", priceUsd=780,  grossPct=12, capexCr=90,  capacityPerYr=60000,  fixedCr=20, certs=["ISO 9001","API","ISO 14001"], entry="Blender / re-refiner (capital-heavy)"),
+ "commodity_raw":dict(unit="tonne", priceUsd=850,  grossPct=12, capexCr=30,  capacityPerYr=25000,  fixedCr=10, certs=["ISO 9001"], entry="Merchant exporter"),
+ "fine_chem":    dict(unit="tonne", priceUsd=9000, grossPct=26, capexCr=60,  capacityPerYr=5000,   fixedCr=16, certs=["REACH","ISO 9001","cGMP intermediate"], entry="Private-label converter"),
+ "pharma_ff":    dict(unit="kg",    priceUsd=60000,grossPct=30, capexCr=120, capacityPerYr=2000,   fixedCr=24, certs=["USFDA","WHO-GMP","EU-GMP"], entry="API / CDMO converter"),
+ "marine_va":    dict(unit="tonne", priceUsd=9000, grossPct=16, capexCr=40,  capacityPerYr=4000,   fixedCr=15, certs=["HACCP","BAP/BRC","EU-approved","MPEDA"], entry="IQF value-add converter"),
+ "agri_processed":dict(unit="tonne",priceUsd=2000, grossPct=20, capexCr=25,  capacityPerYr=6000,   fixedCr=10, certs=["FSSAI","HACCP","ISO 22000"], entry="Processor → private label"),
+ "textile_made": dict(unit="tonne", priceUsd=7000, grossPct=18, capexCr=35,  capacityPerYr=6000,   fixedCr=13, certs=["OEKO-TEX","GOTS","ISO 9001"], entry="Converter / made-up manufacturer"),
+ "apparel":      dict(unit="piece", priceUsd=6,    grossPct=22, capexCr=30,  capacityPerYr=3000000,fixedCr=14, certs=["OEKO-TEX","WRAP","Sedex"], entry="CMT → FOB manufacturer"),
+ "leather_goods":dict(unit="piece", priceUsd=25,   grossPct=24, capexCr=30,  capacityPerYr=800000, fixedCr=12, certs=["LWG","REACH","ISO 9001"], entry="Converter / finished-goods maker"),
+ "auto_parts":   dict(unit="piece", priceUsd=40,   grossPct=20, capexCr=60,  capacityPerYr=1000000,fixedCr=16, certs=["IATF 16949","PPAP","ISO 9001"], entry="Tier-2 → Tier-1 supplier"),
+ "machinery":    dict(unit="unit",  priceUsd=900,  grossPct=22, capexCr=60,  capacityPerYr=20000,  fixedCr=16, certs=["CE","UL","ISO 9001"], entry="OEM component maker"),
+ "electronics":  dict(unit="piece", priceUsd=18,   grossPct=18, capexCr=45,  capacityPerYr=2000000,fixedCr=14, certs=["BIS","IPC-A-610","RoHS","ISO 9001"], entry="EMS / PCBA"),
+ "steel_prod":   dict(unit="tonne", priceUsd=2000, grossPct=14, capexCr=60,  capacityPerYr=20000,  fixedCr=16, certs=["ISO 9001","PED","API"], entry="Re-roller / fabricator"),
+ "aluminium":    dict(unit="tonne", priceUsd=3200, grossPct=16, capexCr=55,  capacityPerYr=15000,  fixedCr=14, certs=["ISO 9001","ASI"], entry="Extruder / roller"),
+ "ceramic":      dict(unit="ksqm",  priceUsd=9000, grossPct=20, capexCr=40,  capacityPerYr=3000,   fixedCr=12, certs=["CE","ANSI","ISO 9001"], entry="Morbi-cluster converter"),
+ "gems_jewel":   dict(unit="piece", priceUsd=300,  grossPct=26, capexCr=25,  capacityPerYr=150000, fixedCr=12, certs=["IGI/GIA","BIS Hallmark","RJC"], entry="Manufacturer → private label"),
+ "plastics":     dict(unit="tonne", priceUsd=2000, grossPct=18, capexCr=40,  capacityPerYr=6000,   fixedCr=12, certs=["ISO 9001","FDA food-grade","REACH"], entry="Converter / moulder"),
+ "defence":      dict(unit="unit",  priceUsd=90000,grossPct=32, capexCr=60,  capacityPerYr=800,    fixedCr=20, certs=["AS9100","DGQA/MoD","ISO 9001"], entry="Sub-system OEM"),
+ "generic_mfg":  dict(unit="unit",  priceUsd=120,  grossPct=18, capexCr=35,  capacityPerYr=500000, fixedCr=12, certs=["ISO 9001","CE"], entry="Contract manufacturer"),
+}
+
+# ---- policy archetypes (tariffs / FTAs / RoDTEP / AD flags; estimate) ---------
+POLICY = {
+ "petro":   dict(rodtepPct=0.5, ftas=[], adFlags=[], tariffs=[("USA","0–2.5%"),("EU","0–4.7%"),("United Arab Emirates","0–5%")]),
+ "chem":    dict(rodtepPct=1.5, ftas=["UAE CEPA","Australia ECTA","UK CETA (2025)"], adFlags=["EU/US AD duties on select dyes & chemicals"], tariffs=[("USA","3.7%"),("EU","5.5%"),("United Arab Emirates","0% (CEPA)"),("China","6.5%")]),
+ "pharma":  dict(rodtepPct=1.0, ftas=["UAE CEPA","Australia ECTA","UK CETA (2025)"], adFlags=[], tariffs=[("USA","0%"),("EU","0%"),("United Arab Emirates","0% (CEPA)"),("Brazil","8–14%")]),
+ "marine":  dict(rodtepPct=2.5, ftas=["UAE CEPA","Japan CEPA","UK CETA (2025)"], adFlags=["US AD/CVD order on frozen warm-water shrimp"], tariffs=[("USA","0–5% + AD/CVD"),("EU","12–20%"),("Japan","1–5% (CEPA)"),("China","2–7%")]),
+ "textile": dict(rodtepPct=4.3, ftas=["UAE CEPA","Australia ECTA","UK CETA (2025)"], adFlags=[], tariffs=[("USA","9–16%"),("EU","9.6%"),("United Kingdom","0% (FTA)"),("United Arab Emirates","0% (CEPA)")]),
+ "metal":   dict(rodtepPct=1.5, ftas=["UAE CEPA","Australia ECTA"], adFlags=["US Section 232 tariffs on steel/aluminium","EU safeguard quotas"], tariffs=[("USA","25% (§232)"),("EU","safeguard quota"),("United Arab Emirates","0–5%")]),
+ "auto":    dict(rodtepPct=1.8, ftas=["UAE CEPA","Australia ECTA","UK CETA (2025)"], adFlags=[], tariffs=[("USA","2.5%"),("EU","3–4.5%"),("United Arab Emirates","0–5%")]),
+ "machine": dict(rodtepPct=2.0, ftas=["UAE CEPA","ASEAN FTA"], adFlags=[], tariffs=[("USA","0–2.6%"),("EU","1.7–2.7%"),("United Arab Emirates","0–5%")]),
+ "ceramic": dict(rodtepPct=5.5, ftas=["UAE CEPA"], adFlags=["US & EU AD orders on ceramic tile (China-led; India watch-listed)"], tariffs=[("USA","8.5% + AD watch"),("EU","AD-exposed"),("Saudi Arabia","5%")]),
+ "leather": dict(rodtepPct=2.5, ftas=["UAE CEPA","UK CETA (2025)"], adFlags=[], tariffs=[("USA","8–15%"),("EU","3.5–8%"),("United Kingdom","0% (FTA)")]),
+ "agri":    dict(rodtepPct=2.0, ftas=["UAE CEPA","ASEAN FTA"], adFlags=[], tariffs=[("USA","2–6%"),("EU","variable + TRQ"),("Saudi Arabia","5%")]),
+ "gems":    dict(rodtepPct=0.5, ftas=["UAE CEPA"], adFlags=[], tariffs=[("USA","0%"),("United Arab Emirates","0% (CEPA)"),("EU","0–2.5%")]),
+ "defence": dict(rodtepPct=0.5, ftas=[], adFlags=["MTCR / end-use & export-control clearance required"], tariffs=[("Buyer nation","government-to-government")]),
+ "generic": dict(rodtepPct=1.5, ftas=["UAE CEPA","Australia ECTA"], adFlags=[], tariffs=[("USA","2–4%"),("EU","3–4%"),("United Arab Emirates","0% (CEPA)")]),
+}
+
+# supply-archetype -> (econ key, policy key); a few chapter-specific overrides
+ARCH = {
+ "petro": ("petro_ref", "petro"), "metalore": ("commodity_raw", "petro"),
+ "chem": ("fine_chem", "chem"), "pharma": ("pharma_ff", "pharma"),
+ "gems": ("gems_jewel", "gems"), "textile": ("textile_made", "textile"),
+ "apparel": ("apparel", "textile"), "marine": ("marine_va", "marine"),
+ "agri": ("agri_processed", "agri"), "spice": ("agri_processed", "agri"),
+ "machine": ("machinery", "machine"), "elec": ("electronics", "machine"),
+ "auto": ("auto_parts", "auto"), "steel": ("steel_prod", "metal"),
+ "ceramic": ("ceramic", "ceramic"), "leather": ("leather_goods", "leather"),
+ "plastic": ("plastics", "generic"), "generic": ("generic_mfg", "generic"),
+}
+CH_OVERRIDE = {"93": ("defence", "defence"), "76": ("aluminium", "metal")}
+
+def policy_json(pkey):
+    p = POLICY[pkey]
+    return {"rodtepPct": p["rodtepPct"], "ftas": list(p["ftas"]), "adFlags": list(p["adFlags"]),
+            "tariffs": [{"market": m, "mfn": t} for m, t in p["tariffs"]]}
+
+def econ_json(ekey):
+    return dict(ECON[ekey])
+
+
 # ---- helpers -----------------------------------------------------------------
 def dedup_supply(rows):
     """merge duplicate state keys, keep order, renormalise to <=100."""
@@ -526,6 +592,9 @@ for ch in range(1, 98):
     if code not in CHAPTERS:
         continue
     sup_arch, dest_arch, global_b, cagr = PROFILE[code]
+    ekey, pkey = CH_OVERRIDE.get(code, ARCH[sup_arch])
+    econ = econ_json(ekey)
+    policy = policy_json(pkey)
     rn, sec_title = section_of(ch)
     india_exp = CHAP_EXPORT.get(code, 300)
     supply = dedup_supply(SUPPLY[sup_arch])
@@ -543,7 +612,8 @@ for ch in range(1, 98):
         "destinations": destinations,
         "globalImportUsdB": global_b, "indiaSharePct": shr, "cagrPct": cagr,
         "tier": tier, "score": score,
-        "provenance": {"taxonomy": "official", "figures": "estimate", "splits": "derived"},
+        "econ": econ, "policy": policy,
+        "provenance": {"taxonomy": "official", "figures": "estimate", "splits": "derived", "policy": "estimate"},
     })
 
     # HS-4 children (curated real headings for material chapters)
@@ -569,7 +639,8 @@ for ch in range(1, 98):
             "globalImportUsdB": round(global_b * w / wtot, 1),
             "indiaSharePct": s4, "cagrPct": cagr,
             "tier": t4, "score": sc4,
-            "provenance": {"taxonomy": "official", "figures": "estimate", "splits": "derived"},
+            "econ": econ, "policy": policy,
+            "provenance": {"taxonomy": "official", "figures": "estimate", "splits": "derived", "policy": "estimate"},
         })
 
 # ---- meta + emit -------------------------------------------------------------
